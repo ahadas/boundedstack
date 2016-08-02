@@ -2,6 +2,8 @@ package org.openu.demo;
 
 import java.util.*;
 
+import org.aspectj.lang.annotation.Hide;
+
 public privileged aspect BoundedBufferCoord perthis(execution(org.openu.demo.BoundedBuffer.new(..) ))
 {
   private boolean org.openu.demo.BoundedBuffer.full = false;
@@ -53,6 +55,7 @@ public privileged aspect BoundedBufferCoord perthis(execution(org.openu.demo.Bou
       empty = true;
   }
 
+  @Hide(true)
   @org.aspectj.lang.annotation.Before("execution(* add(..)) && this(obj)") public synchronized void lock_add(org.openu.demo.BoundedBuffer obj)
   { 
 //	  System.out.println("arik1");
